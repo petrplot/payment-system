@@ -4,7 +4,6 @@ module.exports = ({cardNumber,year,month,cvv,amount})=>{
     if(cardNumber && cardNumber.length === 16){
         if(isFinite(cardNumber)){
             validCN = true
-           
         }
     }
 

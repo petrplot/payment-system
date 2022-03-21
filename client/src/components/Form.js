@@ -8,6 +8,8 @@ const Form = () => {
     const [cvv, setCvv] = useState('')
     const [amount, setAmount] = useState('')
 
+
+
     const payment =  {
             cardNumber,
             year,
@@ -31,39 +33,60 @@ const Form = () => {
         
     }
 
+    let cardInput 
+    cardNumber.length !== 16 && cardNumber.length !== 0 ?  cardInput = 'red' : cardInput = 'green';
+    let yearInput 
+    year.length !== 4 && year.length !== 0 ? yearInput = 'red': yearInput = 'green';
+    let monthInput
+    month.length !== 2 && month.length !== 0 ? monthInput = 'red': monthInput = 'green';
+    let cvvInput
+    cvv.length !== 3 && cvv.length !== 0 ? cvvInput = 'red': cvvInput = 'green';
+
+
   return (
       <div className='form'>
           <div>
+            <p>введите номер карты</p>
+            <p> {isFinite(cardNumber)? '' : 'только цифры' } </p>
             <input
-              type={'number'}
+              className={cardInput}
               value={cardNumber}
               onChange={e=>setCardNumber(e.target.value)}
             />
           </div>
           <div>
-            <input 
-              type={'number'}
+            </div>
+          <div>
+            <p>введите год и месяц</p>
+            <p> {isFinite(year) && isFinite(month)? '' : 'только цифры' } </p>
+            <input
+              className={yearInput}
+              placeholder='0000'             
               value={year}
               onChange={e=>setYear(e.target.value)}
             />
           </div>
           <div>
             <input 
-              type={'number'}
+              className={monthInput}
+              placeholder='00'             
               value={month}
               onChange={e=>setMonth(e.target.value)}
             />
           </div>
           <div>
-            <input 
-              type={'number'}
+          <p>введите cvv код</p>
+          <p> {isFinite(cvv)? '' : 'только цифры' } </p>
+            <input
+              className={cvvInput}             
               value={cvv}
               onChange={e=>setCvv(e.target.value)}
             />
           </div>
           <div>
-            <input 
-              type={'number'}
+            <p>введите сумму</p>
+            <p> {!isNaN(amount)? '' : 'только цифры' } </p>
+            <input             
               value={amount}
               onChange={e=>setAmount(e.target.value)}
             />
